@@ -1,67 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
 
-  @import 'tailwindcss';
-
+@import 'tailwindcss';
 
 @theme {
+  /* AMBER GOLD */
+  --color-amber-gold: #ffbe0b;
+  --color-amber-gold-100: #352700;
+  --color-amber-gold-200: #6a4e00;
+  --color-amber-gold-300: #9f7500;
+  --color-amber-gold-400: #d49c00;
+  --color-amber-gold-500: #ffbe0b;
+  --color-amber-gold-600: #ffcb3b;
+  --color-amber-gold-700: #ffd86c;
+  --color-amber-gold-800: #ffe59d;
+  --color-amber-gold-900: #fff2ce;
 
-    /* AMBER GOLD */
-    --color-amber-gold: #ffbe0b;
-    --color-amber-gold-100: #352700;
-    --color-amber-gold-200: #6a4e00;
-    --color-amber-gold-300: #9f7500;
-    --color-amber-gold-400: #d49c00;
-    --color-amber-gold-500: #ffbe0b;
-    --color-amber-gold-600: #ffcb3b;
-    --color-amber-gold-700: #ffd86c;
-    --color-amber-gold-800: #ffe59d;
-    --color-amber-gold-900: #fff2ce;
+  /* BLAZE ORANGE */
+  --color-blaze-orange: #fb5607;
+  --color-blaze-orange-100: #331101;
+  --color-blaze-orange-200: #662202;
+  --color-blaze-orange-300: #9a3202;
+  --color-blaze-orange-400: #cd4303;
+  --color-blaze-orange-500: #fb5607;
+  --color-blaze-orange-600: #fc773a;
+  --color-blaze-orange-700: #fd996b;
+  --color-blaze-orange-800: #febb9d;
+  --color-blaze-orange-900: #feddce;
 
-    /* BLAZE ORANGE */
-    --color-blaze-orange: #fb5607;
-    --color-blaze-orange-100: #331101;
-    --color-blaze-orange-200: #662202;
-    --color-blaze-orange-300: #9a3202;
-    --color-blaze-orange-400: #cd4303;
-    --color-blaze-orange-500: #fb5607;
-    --color-blaze-orange-600: #fc773a;
-    --color-blaze-orange-700: #fd996b;
-    --color-blaze-orange-800: #febb9d;
-    --color-blaze-orange-900: #feddce;
+  /* NEON PINK */
+  --color-neon-pink: #ff006e;
+  --color-neon-pink-100: #330016;
+  --color-neon-pink-200: #66002c;
+  --color-neon-pink-300: #990042;
+  --color-neon-pink-400: #cc0058;
+  --color-neon-pink-500: #ff006e;
+  --color-neon-pink-600: #ff338b;
+  --color-neon-pink-700: #ff66a8;
+  --color-neon-pink-800: #ff99c5;
+  --color-neon-pink-900: #ffcce2;
 
-    /* NEON PINK */
-    --color-neon-pink: #ff006e;
-    --color-neon-pink-100: #330016;
-    --color-neon-pink-200: #66002c;
-    --color-neon-pink-300: #990042;
-    --color-neon-pink-400: #cc0058;
-    --color-neon-pink-500: #ff006e;
-    --color-neon-pink-600: #ff338b;
-    --color-neon-pink-700: #ff66a8;
-    --color-neon-pink-800: #ff99c5;
-    --color-neon-pink-900: #ffcce2;
+  /* BLUE VIOLET */
+  --color-blue-violet: #8338ec;
+  --color-blue-violet-100: #190535;
+  --color-blue-violet-200: #320a6a;
+  --color-blue-violet-300: #4b0fa0;
+  --color-blue-violet-400: #6414d5;
+  --color-blue-violet-500: #8338ec;
+  --color-blue-violet-600: #9b5ef0;
+  --color-blue-violet-700: #b487f4;
+  --color-blue-violet-800: #cdaff8;
+  --color-blue-violet-900: #e6d7fb;
 
-    /* BLUE VIOLET */
-    --color-blue-violet: #8338ec;
-    --color-blue-violet-100: #190535;
-    --color-blue-violet-200: #320a6a;
-    --color-blue-violet-300: #4b0fa0;
-    --color-blue-violet-400: #6414d5;
-    --color-blue-violet-500: #8338ec;
-    --color-blue-violet-600: #9b5ef0;
-    --color-blue-violet-700: #b487f4;
-    --color-blue-violet-800: #cdaff8;
-    --color-blue-violet-900: #e6d7fb;
-
-    /* AZURE BLUE */
-    --color-azure-blue: #3a86ff;
-    --color-azure-blue-100: #00183e;
-    --color-azure-blue-200: #00307c;
-    --color-azure-blue-300: #0048bb;
-    --color-azure-blue-400: #005ff9;
-    --color-azure-blue-500: #3a86ff;
-    --color-azure-blue-600: #609dff;      
-    --color-azure-blue-700: #88b5ff;
-    --color-azure-blue-800: #afceff;
-    --color-azure-blue-900: #d7e6ff;
+  /* AZURE BLUE */
+  --color-azure-blue: #3a86ff;
+  --color-azure-blue-100: #00183e;
+  --color-azure-blue-200: #00307c;
+  --color-azure-blue-300: #0048bb;
+  --color-azure-blue-400: #005ff9;
+  --color-azure-blue-500: #3a86ff;
+  --color-azure-blue-600: #609dff;
+  --color-azure-blue-700: #88b5ff;
+  --color-azure-blue-800: #afceff;
+  --color-azure-blue-900: #d7e6ff;
 }
