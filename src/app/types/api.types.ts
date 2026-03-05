@@ -1,0 +1,1 @@
+export type endpoint = "keywords-gen"|"corpus"
