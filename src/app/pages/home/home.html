@@ -1,41 +1,95 @@
-<main class="px-4 flex h-dvh border flex-col items-center justify-center gap-10">
+<main class="px-4 flex h-dvh flex-col items-center justify-center gap-10">
   <section class="flex flex-col gap-4 items-center">
-    <div class="">
+    <div class="flex flex-col items-center text-center">
       <img class="size-22" src="doc-keywords-generator-logo~3 (6).webp" alt="Dockygen logo" />
-      <h1 class="text-2xl font-bold">Dockygen</h1>
+      <h1 class="text-2xl text-blue-violet font-bold">Dockygen</h1>
     </div>
     <p class="text-pretty text-center text-gray-500">
-      Générez automatiquement les mots-clés pour vos documents PDF ou texte.
+      Générez automatiquement les mots-clés de vos documents PDF ou texte en quelques secondes.
     </p>
   </section>
-  <section class="flex">
-    <form action="" class="flex flex-col items-center gap-7">
-      <section class="relative rounded-2xl flex flex-col items-center">
+
+  <!-- Section de telechargement du document -->
+  <section class="flex max-w-180 w-full">
+    <form (ngSubmit)="onSubmit()" class="w-full flex flex-col items-center gap-7">
+      <section class="relative w-full rounded-2xl flex flex-col items-center">
         <div
-          class="border-dashed border-blue-violet-900 rounded-2xl p-4 border-2 flex bg-white pointer-events-none relative z-2 flex-col items-center gap-0.5"
+          [class]="{
+            'border-blue-violet-300': fileIsSelected(),
+          }"
+          class="w-full border-dashed border-blue-violet-100 rounded-2xl p-4 border-2 flex bg-white pointer-events-none relative z-2 flex-col items-center gap-0.5"
         >
           <span
-            class="mb-4 bg-blue-violet-900 border border-blue-violet-800/0 size-10 rounded-full flex justify-center items-center"
+            class="mb-4 bg-blue-violet-100 border border-blue-violet-800/0 size-15 rounded-full flex justify-center items-center"
           >
-            <i-lucide [img]="uploadIcon" class="text-blue-violet-400"></i-lucide>
+            <i-lucide
+              [size]="30"
+              [img]="fileIsSelected() ? checkIcon : uploadIcon"
+              class="text-blue-violet"
+            ></i-lucide>
           </span>
-          <span class="font-bold text-balance text-center">Choisissez un document ou glissez-le ici</span>
-          <span class="text-sm font-medium text-gray-400 text-muted-foreground"> PDF ou Text </span>
+          <span class="text-gray-600 font-bold text-balance text-center">
+            {{
+              fileIsSelected()
+                ? uploadFileForm._file.name
+                : 'Choisissez un document ou glissez-le ici'
+            }}
+          </span>
+          @if (!fileIsSelected()) {
+            <span class="text-sm font-medium text-gray-400 text-muted-foreground">
+              PDF ou Texte
+            </span>
+          }
         </div>
         <input
+          (change)="onFileSelected($event)"
           accept=".pdf,.txt"
           class="z-1 absolute size-full rounded-2xl"
           type="file"
-          name="file"
           id="file-input"
         />
       </section>
-      <button
-        class="font-bold shadow-md text-white shadow-violet-600/40 w-full border border-blue-violet-500 rounded-lg bg-blue-violet p-2"
-        type="submit"
-      >
-        Generez les mots-clés
-      </button>
+      <div class="flex justify-center items-center w-full relative">
+        <button
+          [disabled]="!fileIsSelected()"
+          class="z-2 relative disabled:opacity-50 disabled:cursor-not-allowed font-bold shadow-md text-white shadow-violet-600/40 w-full rounded-lg bg-blue-violet p-2 flex items-center justify-center gap-2"
+          type="submit"
+        >
+          <i-lucide [size]="18" [img]="sparklesIcon"></i-lucide>
+          Generez les mots-clés
+        </button>
+
+        @if (fileIsSelected()) {
+          <div
+            class="z-1 h-[85%] rounded-2xl opacity-50 absolute w-[80%] animate-ping bg-blue-violet-400"
+          ></div>
+        }
+      </div>
     </form>
   </section>
+
+  <!-- Section d'affichage des mots-clés générés -->
+  @if (keywords()) {
+    <section class="flex max-w-180 w-full flex-col gap-4">
+      <div
+        class="bg-linear-to-r from-blue-violet to-blue-violet-400 rounded-2xl p-6 text-white shadow-lg"
+      >
+        <h2 class="text-xl font-bold mb-2">Mots-clés générés</h2>
+        <p class="text-sm opacity-90">{{ keywords()!.document_name }}</p>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        @for (keyword of keywords()!.keywords; track keyword.term) {
+          <div
+            class="bg-blue-violet-50 border border-blue-violet-200 rounded-lg px-4 py-2 flex items-center gap-2"
+          >
+            <span class="text-blue-violet font-semibold">{{ keyword.term }}</span>
+            <span class="text-xs bg-blue-violet text-white rounded-full px-2 py-1"
+              >{{ (keyword.score * 100).toFixed(1) }}%</span
+            >
+          </div>
+        }
+      </div>
+    </section>
+  }
 </main>
