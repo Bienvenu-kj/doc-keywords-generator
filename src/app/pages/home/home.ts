@@ -1,12 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { LucideAngularModule, Upload, CheckLine, Sparkles } from 'lucide-angular';
+import { LucideAngularModule, Upload, CheckLine, Sparkles, WandSparkles } from 'lucide-angular';
 import { UploadFileForm, KeywordsApiResponse } from '../../types/app.types';
 import { KeywordsGenerator } from '../../services/keywords-generator/keywords-generator';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [LucideAngularModule, FormsModule],
+  imports: [LucideAngularModule, FormsModule, JsonPipe],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -14,6 +15,7 @@ export default class Home {
   readonly uploadIcon = Upload;
   readonly checkIcon = CheckLine;
   readonly sparklesIcon = Sparkles;
+  readonly wandSparkles = WandSparkles;
   keywordsGenService = inject(KeywordsGenerator);
 
   formData = new FormData();
@@ -21,6 +23,8 @@ export default class Home {
   fileIsSelected = signal(false);
 
   keywords = signal<KeywordsApiResponse | null>(null);
+  isGeneratingProgress = signal(false);
+  errorInfo = signal<any>(null);
 
   onFileSelected(event: Event) {
     const target = event.target as HTMLInputElement;
@@ -37,12 +41,18 @@ export default class Home {
       alert(this.uploadFileForm._file.name);
       this.formData.append('file', this.uploadFileForm._file);
 
-      const response = (await this.keywordsGenService
-        .generateKeywords(this.formData)
-      )
+      this.isGeneratingProgress.set(true);
+      try {
+        const data = await this.keywordsGenService.generateKeywords(this.formData);
 
-      const data = await response.json() as KeywordsApiResponse;
-      this.keywords.set(data);
+        //const data = (await response.json()) as KeywordsApiResponse;
+        this.keywords.set(data);
+      } catch (err) {
+        this.errorInfo.set(err);
+        alert(err);
+      } finally {
+        this.isGeneratingProgress.set(false);
+      }
     }
   }
 

@@ -41,7 +41,8 @@
             </span>
           }
         </div>
-        <input
+       <input
+          [disabled]="isGeneratingProgress()"
           (change)="onFileSelected($event)"
           accept=".pdf,.txt"
           class="z-1 absolute size-full rounded-2xl"
@@ -49,17 +50,18 @@
           id="file-input"
         />
       </section>
+      {{ errorInfo() | json }}
       <div class="flex justify-center items-center w-full relative">
         <button
-          [disabled]="!fileIsSelected()"
+          [disabled]="!fileIsSelected() || isGeneratingProgress()"
           class="z-2 relative disabled:opacity-50 disabled:cursor-not-allowed font-bold shadow-md text-white shadow-violet-600/40 w-full rounded-lg bg-blue-violet p-2 flex items-center justify-center gap-2"
           type="submit"
         >
           <i-lucide [size]="18" [img]="sparklesIcon"></i-lucide>
-          Generez les mots-clés
+          {{ isGeneratingProgress() ? 'Génération en cours...' : 'Generez les mots-clés' }}
         </button>
 
-        @if (fileIsSelected()) {
+        @if (fileIsSelected() && !isGeneratingProgress()) {
           <div
             class="z-1 h-[85%] rounded-2xl opacity-50 absolute w-[80%] animate-ping bg-blue-violet-400"
           ></div>
