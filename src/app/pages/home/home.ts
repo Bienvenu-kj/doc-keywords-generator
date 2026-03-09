@@ -38,18 +38,15 @@ export default class Home {
 
   async onSubmit() {
     if (this.uploadFileForm._file) {
-      alert(this.uploadFileForm._file.name);
+      //alert(this.uploadFileForm._file.name);
       this.formData.append('file', this.uploadFileForm._file);
 
       this.isGeneratingProgress.set(true);
       try {
         const data = await this.keywordsGenService.generateKeywords(this.formData);
-
-        //const data = (await response.json()) as KeywordsApiResponse;
         this.keywords.set(data);
       } catch (err) {
         this.errorInfo.set(err);
-        alert(err);
       } finally {
         this.isGeneratingProgress.set(false);
       }

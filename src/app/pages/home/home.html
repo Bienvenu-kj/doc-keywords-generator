@@ -1,4 +1,4 @@
-<main class="px-4 flex h-dvh flex-col items-center justify-center gap-10">
+<main class="px-4 overflow-y-auto flex h-dvh flex-col items-center justify-center gap-10">
   <section class="flex flex-col gap-4 items-center">
     <div class="flex flex-col items-center text-center">
       <img class="size-22" src="doc-keywords-generator-logo~3 (6).webp" alt="Dockygen logo" />
@@ -50,7 +50,6 @@
           id="file-input"
         />
       </section>
-      {{ errorInfo() | json }}
       <div class="flex justify-center items-center w-full relative">
         <button
           [disabled]="!fileIsSelected() || isGeneratingProgress()"
@@ -69,29 +68,4 @@
       </div>
     </form>
   </section>
-
-  <!-- Section d'affichage des mots-clés générés -->
-  @if (keywords()) {
-    <section class="flex max-w-180 w-full flex-col gap-4">
-      <div
-        class="bg-linear-to-r from-blue-violet to-blue-violet-400 rounded-2xl p-6 text-white shadow-lg"
-      >
-        <h2 class="text-xl font-bold mb-2">Mots-clés générés</h2>
-        <p class="text-sm opacity-90">{{ keywords()!.document_name }}</p>
-      </div>
-
-      <div class="flex flex-wrap gap-3">
-        @for (keyword of keywords()!.keywords; track keyword.term) {
-          <div
-            class="bg-blue-violet-50 border border-blue-violet-200 rounded-lg px-4 py-2 flex items-center gap-2"
-          >
-            <span class="text-blue-violet font-semibold">{{ keyword.term }}</span>
-            <span class="text-xs bg-blue-violet text-white rounded-full px-2 py-1"
-              >{{ (keyword.score * 100).toFixed(1) }}%</span
-            >
-          </div>
-        }
-      </div>
-    </section>
-  }
 </main>

@@ -12,6 +12,6 @@ export class KeywordsGenerator {
   constructor() {}
 
   async generateKeywords(formData: FormData) {
-    return await firstValueFrom(this.http.post<KeywordsApiResponse>(this.apiUrl, formData));
+    return firstValueFrom(this.http.post<KeywordsApiResponse>(this.apiUrl, formData));
   }
 }
